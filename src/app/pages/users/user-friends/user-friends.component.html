@@ -1,0 +1,40 @@
+<ng-container *ngIf="user$ | async as user">
+    <div class="d-grid bg-dark">
+        <div class="card">
+            <div class="card-body">
+                <h4>{{user.firstName}}</h4>
+                <h4>{{user.lastName}}</h4>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="userFriends.length; else loading">
+    <div class="d-grid bg-dark">
+        <table class="table" style="color:white">
+            <thead>
+                <tr>
+                    <th>{{ 'firstName' | titlecase }}</th>
+                    <th>{{ 'lastName' | titlecase }}</th>
+                    <th>{{ 'description' | titlecase }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of userFriends; trackBy: trackByFn">
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.description}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+
+
+<ng-template #loading>
+    <div class="loader">
+        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+    </div>
+</ng-template>

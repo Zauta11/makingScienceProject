@@ -1,0 +1,38 @@
+<ng-container *ngIf="users.length; else loading">
+    <div class="d-grid">
+        <section class="h-100" style="background-color: #1b1b1b">
+            <table class="table mt-2" style="color: white;">
+                <thead class="h4">
+                    <tr>
+                        <th scope="row">User ID</th>
+                        <th scope="row">Profile Picture</th>
+                        <th scope="row">firstName</th>
+                        <th scope="row">lastName</th>
+                        <th scope="row">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users; trackBy: trackByFn ">
+                        <td>{{user.id}}</td>
+                        <td>
+                            <img src="{{user.profilePic}}" alt="user-profile-picture">
+                        </td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>
+                            <button class="button" (click)="goToDetails(user.id)"><span>User Details </span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</ng-container>
+
+<ng-template #loading>
+    <div class="loader">
+        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+    </div>
+</ng-template>
